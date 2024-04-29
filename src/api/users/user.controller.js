@@ -59,6 +59,7 @@ module.exports = {
   },
   login: (req, res) => {
     const body = req.body;
+    // console.log("hi")
     getUserByUserEmail(body.email, (err, results) => {
       if (err) {
         return res.status(500).json({

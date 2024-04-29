@@ -32,11 +32,12 @@ const { createAwards }=require('./src/model/awards.model');
 const  imageRoute  =require('./src/api/ImageRoute/ImageRoute');
 const token_validation = require("./src/auth/token_validation");
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://192.168.29.82:3000','http://localhost:3000'],
+  // origin:"*",
   methods:['GET','POST','PATCH ','DELETE'],
   allowedHeaders:['Content-Type','Authorization'],
   credentials:true,
-  exposedHeaders:['set-cookie']
+ 
 }))
 app.use(bodyParser.json());
 
