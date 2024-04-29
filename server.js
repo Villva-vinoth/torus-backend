@@ -12,6 +12,7 @@ const blogRouter =require("./src/api/blog/blog.router");
 const testimonialsRouter =require("./src/api/testimonials/testimonials.router");
 const awardsRouter =require("./src/api/awards/awards.router");
 
+const emailRouter =require("./src/api/email/email.route");
 
 
 
@@ -71,6 +72,7 @@ app.use('/api/productForm',productFormRouter);
 app.use('/api/blog',blogRouter);
 app.use('/api/testimonials',testimonialsRouter);
 app.use('/api/awards',awardsRouter);
+app.use('/api/mail',emailRouter);
 
 app.use(cookieParser())
 

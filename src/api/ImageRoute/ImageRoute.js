@@ -2,9 +2,10 @@ const router = require("express").Router();
 const multer = require('multer');
 const  cloudinary   = require('../../config/ImageConfig');
 const { createProduct } = require("../productMaster/product.controller");
+const { checkToken } = require("../../auth/token_validation");
 const upload = multer({ dest: 'images/' });
 
-router.post('/createProduct', upload.single('product_image'), async (req, res) => {
+router.post('/createProduct',checkToken, upload.single('product_image'), async (req, res) => {
     try {
       const result = await cloudinary.uploader.upload(req.file.path);
       const productData ={
