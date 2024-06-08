@@ -5,7 +5,7 @@ module.exports = {
     // console.log("Api hitting form verfiy token")
     if (token) {
       token = token.slice(7);
-      jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+      jwt.verify(token,process.env.JWT_KEY, (err, decoded) => {
         if (err) {
           return res.status(402).json({
             success: 0,

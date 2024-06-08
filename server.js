@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const  cookieParser = require('cookie-parser')
+// const  cookieParser = require('cookie-parser')
 const userRouter = require("./src/api/users/user.router");
 const productRouter =require("./src/api/productMaster/product.router");
 const showCaseRouter =require("./src/api/showCase/showCase.router");
@@ -33,19 +33,20 @@ const { createAwards }=require('./src/model/awards.model');
 const  imageRoute  =require('./src/api/ImageRoute/ImageRoute');
 const token_validation = require("./src/auth/token_validation");
 app.use(cors({
-  origin: ['http://192.168.29.82:3000','http://localhost:3000'],
+  origin: '*',
   // origin:"*",
-  methods:['GET','POST','PATCH ','DELETE'],
-  allowedHeaders:['Content-Type','Authorization'],
-  credentials:true,
- 
+  // allowedHeaders:['Content-Type','Authorization'],
+  // credentials:true,
 }))
 app.use(bodyParser.json());
 
 sql.getConnection((err, connection) => {
   if (err) {
-    console.log(err)
+    console.log("error",err)
+    // process.exit(1); 
+
   }
+  
   if (connection) {
     console.log("connected to mysql")
     // createUser()
@@ -57,7 +58,8 @@ sql.getConnection((err, connection) => {
     // createBlog()
     // createTestimonials()
     // createAwards()
-    
+    // connection.end();
+
   }
 })
 
@@ -74,9 +76,13 @@ app.use('/api/testimonials',testimonialsRouter);
 app.use('/api/awards',awardsRouter);
 app.use('/api/mail',emailRouter);
 
-app.use(cookieParser())
+// app.use(cookieParser())
 
-
+app.get('/',(req,res)=>{
+  res.status(200).json({
+    message:"Torus Status Active !"
+  })
+})
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

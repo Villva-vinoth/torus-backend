@@ -56,6 +56,7 @@ module.exports = {
     const body = req.params;
     deleteProjectDataDetailById(body, (err, result) => {
       if (err) {
+        console.log("error",err)
         return res.status(500).json({
           success: 0,
           message: "Database Connection Error"

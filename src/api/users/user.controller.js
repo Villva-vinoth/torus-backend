@@ -80,12 +80,11 @@ module.exports = {
         const jsontoken = jwt.sign({ email: body.email }, "vk@123", {
           expiresIn: Sessiontime
         });
-        res.cookie('jwtToken', jsontoken, {
-          withCredentials: true,
-          httpOnly: false,
-          maxAge: Sessiontime,
-          
-      });
+      //   res.cookie('jwtToken', jsontoken, {
+      //     withCredentials: true,
+      //     httpOnly: false,
+      //     maxAge: Sessiontime,
+      // });
          return res.status(200).json({
           success: 1,
           userID: results.t_id,

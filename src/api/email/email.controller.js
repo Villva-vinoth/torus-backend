@@ -3,10 +3,21 @@ require('dotenv').config()
 module.exports.sendMail = async (req, res) => {
 
     const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'vinothpukal6580@gmail.com',
-            pass: process.env.APP_PASS
+        // host: 'smtp-mail.outlook.com',
+        // port:587,
+        // secureConnection:false,
+        // tls:{
+        //     ciphers:'SSLv3',
+        //     rejectUnauthorized:false,
+        // },
+        // auth: {
+        //     user: 'jesinthkumar2904@outlook.com',
+        //     pass: process.env.APP_PASS
+        // }
+        service:"gmail",    
+        auth:{
+            user:"vinothpukal6580@gmail.com",
+            pass:process.env.APP_PASS
         }
     })
 
@@ -33,13 +44,14 @@ const subject = data.product_name? 'Product Enquiry' : data.company_name ? 'Buss
 
     const mailOptions = {
         from: 'vinothpukal6580@gmail.com',
-        to: 'jesinthkumar82@gmail.com',
+        to: 'marketing@torusrobotics.com',
         subject: subject,
         html: html
     }
 
     transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
+            console.log(err)
             return res.json({
                 success: 0,
                 message: "Mail not Send"
