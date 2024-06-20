@@ -3,7 +3,7 @@ const pool = require("../../config/database");
 module.exports = {
   createBlog: (data, callBack) => {
     try {
-      let query = `insert into Blog (blog_image,blog_title,blog_description,
+      let query = `insert into blog (blog_image,blog_title,blog_description,
         blog_description1,user_id) values (?,?,?,?,?)`
       pool.query(
         query,[
@@ -30,7 +30,7 @@ module.exports = {
   getAllBlogDetails: (callBack) => {
     // console.log("hi")
     try {
-      pool.query(`select * from Blog where deleteflag = 0 order by blog_id desc`, (err, result) => {
+      pool.query(`select * from blog where deleteflag = 0 order by blog_id desc`, (err, result) => {
         if (err) return callBack(err);
         return callBack(null, result);
       })

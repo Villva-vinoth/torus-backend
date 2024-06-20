@@ -5,7 +5,7 @@ module.exports = {
     try {
 
       
-      let query = `insert into ShowCase (showcase_name) values (?)`
+      let query = `insert into showcase (showcase_name) values (?)`
       pool.query(
         query,[
           data.showcase_name,
@@ -36,7 +36,7 @@ module.exports = {
   },
   updateShowCaseById: (data, callBack) => {
     try {
-      pool.query(`update showCase set showcase_value=? where showcase_id =?`,
+      pool.query(`update showcase set showcase_value=? where showcase_id =?`,
         [
           data.showcase_value,
         data.showcase_id], (err, result) => {

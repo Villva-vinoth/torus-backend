@@ -53,7 +53,7 @@ module.exports = {
   },
   deleteBlogDataDetailById: (req, res) => {
     const body = req.params;
-    console.log(req)
+    // console.log(req)
     deleteBlogDataDetailById(body, (err, result) => {
       if (err) {
         return res.status(500).json({

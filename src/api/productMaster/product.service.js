@@ -4,7 +4,7 @@ module.exports = {
   createProduct: (data, callBack) => {
     try {
 
-      let query = `insert into productMaster (product_image,product_title,product_description,
+      let query = `insert into productmaster (product_image,product_title,product_description,
         voltage_range,rated_power,peak_power,max_RPM,peak_torque,overload_torque,duty_cycle,
         weight,nominal_voltage,max_current,rated_voltage,absolute_max_voltage,
         continous_current,peak_current,support,operating_mode,user_id) values (
@@ -63,7 +63,7 @@ module.exports = {
   updateProjectDataDetailById: (data, callBack) => {
     try {
       // console.log(data)
-      pool.query(`update productMaster set product_image=?,
+      pool.query(`update productmaster set product_image=?,
       product_title=?,
       product_description=?,
       voltage_range=?,
@@ -111,7 +111,7 @@ module.exports = {
   },
   deleteProjectDataDetailById: (data, callBack) => {
     try {
-      pool.query(`update productMaster set deleteflag = 1 where product_id=?`, [data.product_id], (err, result) => {
+      pool.query(`update productmaster set deleteflag = 1 where product_id=?`, [data.product_id], (err, result) => {
         if (err) return callBack(err);
         return callBack(null, result);
       })
@@ -121,7 +121,7 @@ module.exports = {
   },
   getRecentProjectDetails: (callBack) => {
     try {
-      pool.query(`select * from projectmaster order by project_id desc`, (err, result) => {
+      pool.query(`select * from productmaster order by project_id desc`, (err, result) => {
         if (err) return callBack(err);
         return callBack(null, result);
       })

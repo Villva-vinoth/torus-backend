@@ -32,12 +32,19 @@ const { createAwards }=require('./src/model/awards.model');
 
 const  imageRoute  =require('./src/api/ImageRoute/ImageRoute');
 const token_validation = require("./src/auth/token_validation");
-app.use(cors({
-  origin: '*',
-  // origin:"*",
-  // allowedHeaders:['Content-Type','Authorization'],
-  // credentials:true,
-}))
+
+
+
+const corsOptions = {
+  origin: ['https://torusrobotics.com','http://localhost:3000'],
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+  methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE', 'OPTIONS'],
+  optionSuccessStatus:200,
+  credentials: true, // Required if the frontend needs to send cookies or use authentication
+};
+
+app.use(cors());
+
 app.use(bodyParser.json());
 
 sql.getConnection((err, connection) => {

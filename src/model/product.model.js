@@ -2,7 +2,7 @@ const sql = require('../config/database');
 
 module.exports ={
     createProduct :()=>{
-        let data = `create table if not exists productMaster(
+        let data = `create table if not exists productmaster(
             product_id int auto_increment primary key,
             product_image varchar(500) not null,
             product_title varchar(350) not null,

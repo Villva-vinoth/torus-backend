@@ -7,11 +7,13 @@ const upload = multer({ dest: 'images/' });
 
 router.post('/createProduct',checkToken, upload.single('product_image'), async (req, res) => {
     try {
+
       const result = await cloudinary.uploader.upload(req.file.path);
       const productData ={
         ...req.body,
         product_image:result.secure_url
       }
+
       createProduct(req,res,productData);
     } 
     catch (error) {
@@ -20,7 +22,7 @@ router.post('/createProduct',checkToken, upload.single('product_image'), async (
     }
   })
 
-router.post('/uploadImage', upload.single('image'), async (req, res) => {
+router.post('/uploadImage',checkToken, upload.single('image'), async (req, res) => {
     try {
       // console.log(req)
       const result = await cloudinary.uploader.upload(req.file.path);
@@ -30,7 +32,7 @@ router.post('/uploadImage', upload.single('image'), async (req, res) => {
       console.error('Error uploading to Cloudinary:', error);
       res.status(500).json({ message: 'Error uploading image' }); 
     }
-  })
+})
 
 
 module.exports = router

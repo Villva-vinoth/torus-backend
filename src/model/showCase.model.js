@@ -3,7 +3,7 @@ const sql = require('../config/database')
 module.exports ={
     createShowCase :()=>{
         let data = `
-            create table if not exits showCase(
+            create table if not exits showcase(
                 showcase_id int auto_increment primary key,
                 showcase_name varchar(500) not null,
                 showcase_value boolean default true,
